@@ -1,8 +1,8 @@
 # nlp-thirdgate
 
-A hub of **third-party providers** and tutorials to help you instantly apply various NLP techniques in Python towards your **data iterator** ([more](#data-iterators)) with minimum dependencies.
+A hub of **third-party NLP providers** and tutorials to help you instantly handle your **data iterator** ([more](#data-iterators)) with no-string dependencies.
 
-The purpose is to share **tiny** examples of using each provider that would allow you to combine them in a single **NLP pipeline** ([more](#pipeline-formation)) using your own frameworks.
+The purpose is of this project is to share **Third-party providers** that could be combined into a single **pipeline** ([more](#pipeline-formation)).
 
 # Third-Party Providers
 
