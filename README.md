@@ -1,8 +1,8 @@
 # nlp-thirdgate
 
-A hub of **third-party NLP providers** and tutorials to help you instantly handle your **data iterator** ([more](#data-iterators)) with no-string dependencies.
+A hub of [**third-party NLP providers**](#third-party-providers) and tutorials to help you instantly handle your [**data iterator**](#data-iterators) with no-string dependencies.
 
-The purpose is of this project is to share **Third-party providers** that could be combined into a single **pipeline** ([more](#pipeline-formation)).
+The purpose is of this project is to share **Third-party providers** that could be combined into a single [**pipeline**](#pipeline-formation).
 
 # Third-Party Providers
 
