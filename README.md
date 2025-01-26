@@ -12,6 +12,7 @@ The purpose is of this project is to share **Third-party providers** that could 
 
 * ### [LLM](text-translation)
   * **OpenRouter.AI** provider [[code]](llm/open_router.py)
+  * **Replicate.IO** provider [[code]](llm/replicate_104.py)
 * ### [Text-translation](text-translation)
     * **GoogleTranslator** provider [[code]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
