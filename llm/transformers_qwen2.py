@@ -1,6 +1,6 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from src.lm.base import BaseLM
+from bulk_chain.core.llm_base import BaseLM
 
 
 class Qwen2(BaseLM):
