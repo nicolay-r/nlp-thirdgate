@@ -10,7 +10,7 @@ The purpose is of this project is to share **Third-party providers** that could 
 
 # Third-Party Providers
 
-* ### [LLM](text-translation)
+* ### [LLM](llm)
   * **OpenRouter.AI** provider [[code]](llm/open_router.py)
   * **Replicate.IO** provider [[code]](llm/replicate_104.py)
   * **OpenAI** provider:
@@ -23,6 +23,8 @@ The purpose is of this project is to share **Third-party providers** that could 
     * [[Gemma]](llm/transformers_gemma.py)
     * [[Flan-T5]](llm/transformers_flan_t5.py)
     * [[DeciLM]](llm/transformers_decilm.py)
+* ### [NER](ner)
+    * **DeepPavlov** provider [[code]](ner/dp_130.py)
 * ### [Text-translation](text-translation)
     * **GoogleTranslator** provider [[code]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
