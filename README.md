@@ -18,6 +18,7 @@ The purpose is of this project is to share **Third-party providers** that could 
     * [[o1]](llm/openai_o1.py)
   * **Transformers** provider:
     * [[LLaMA-3]](llm/transformers_llama.py)
+    * [[Qwen-2]](llm/transformers_qwen2.py)
     * [[Microsoft-Phi-2]](llm/transformers_microsoft_phi_2.py)
     * [[Mistral]](llm/transformers_mistral.py)
     * [[Gemma]](llm/transformers_gemma.py)
