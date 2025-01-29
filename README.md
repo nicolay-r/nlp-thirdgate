@@ -13,6 +13,8 @@ The purpose is of this project is to share **Third-party providers** that could 
 * ### [LLM](llm)
   * **OpenRouter.AI** provider [[code]](llm/open_router.py)
   * **Replicate.IO** provider [[code]](llm/replicate_104.py)
+    * DeepSeek-R1
+    * LLaMA-3 [8B] / [70B]  
   * **OpenAI** provider:
     * [[ChatGPT]](llm/openai_156.py)
     * [[o1]](llm/openai_o1.py)
