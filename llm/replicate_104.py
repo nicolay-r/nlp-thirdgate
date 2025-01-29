@@ -45,7 +45,7 @@ class Replicate(BaseLM):
             }
         }
 
-    def __init__(self, model_name="meta/meta-llama-3-70b-instruct", temp=0.1, max_tokens=512, api_token=None,
+    def __init__(self, model_name, temp=0.1, max_tokens=512, api_token=None,
                  suppress_httpx_log=True, **kwargs):
         super(Replicate, self).__init__(model_name)
         self.r_model_name = model_name
