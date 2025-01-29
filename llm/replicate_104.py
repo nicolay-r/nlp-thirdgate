@@ -11,6 +11,14 @@ class Replicate(BaseLM):
     @staticmethod
     def get_template(max_tokens, temp, top_k=50):
         return {
+            "deepseek-ai/deepseek-r1": {
+                "top_p": 1.0,
+                "frequency_penalty": 0,
+                "presence_penalty": 0,
+                "temperature": temp,
+                "max_tokens": min(max_tokens, 20480),
+                "prompt_template": "",
+            },
             "meta/meta-llama-3-8b-instruct": {
                 "top_k": top_k,
                 "top_p": 0.9,
