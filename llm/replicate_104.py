@@ -24,7 +24,7 @@ class Replicate(BaseLM):
                 "top_p": 0.9,
                 "length_penalty": 1,
                 "presence_penalty": 1.15,
-                "temperature": 0.1 if temp is None else temp,,
+                "temperature": 0.1 if temp is None else temp,
                 "max_tokens": max_tokens,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template,
             },
