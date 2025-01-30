@@ -11,6 +11,7 @@ The purpose is of this project is to share **Third-party providers** that could 
 # Third-Party Providers
 
 * ### [LLM](llm)
+  * **Mistral.AI** provider [[code]](llm/mistralai_150.py)
   * **OpenRouter.AI** provider [[code]](llm/open_router.py)
   * **Replicate.IO** provider [[code]](llm/replicate_104.py)
     * DeepSeek-R1
