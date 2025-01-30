@@ -5,8 +5,8 @@ from mistralai import Mistral
 
 class MistralAI(BaseLM):
 
-    def __init__(self, model_name, api_token, temp=0.1, max_tokens=None, client_kwargs=None):
-        super(MistralAI, self).__init__(name=model_name)
+    def __init__(self, model_name, api_token, temp=0.1, max_tokens=None, client_kwargs=None, **kwargs):
+        super(MistralAI, self).__init__(name=model_name, **kwargs)
 
         # dynamic import of the OpenAI library.
 
