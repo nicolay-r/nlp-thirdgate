@@ -5,7 +5,7 @@ from mistralai import Mistral
 
 class MistralAI(BaseLM):
 
-    def __init__(self, model_name, api_token, temp=0.1, max_tokens=None, client_kwargs=None, **kwargs):
+    def __init__(self, model_name, api_token, temp=0.1, max_tokens=None, client_kwargs=None, suppress_httpx_log=True, **kwargs):
         super(MistralAI, self).__init__(name=model_name, **kwargs)
 
         # dynamic import of the OpenAI library.
@@ -15,6 +15,10 @@ class MistralAI(BaseLM):
         self.__temperature = temp
         self.__model_name = model_name
         self.__mistral_client_kwargs = {} if client_kwargs is None else client_kwargs
+
+        if suppress_httpx_log:
+            httpx_logger = logging.getLogger("httpx")
+            httpx_logger.setLevel(logging.WARNING)
 
     def ask(self, prompt):
 
