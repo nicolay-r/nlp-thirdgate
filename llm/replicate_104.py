@@ -53,7 +53,7 @@ class Replicate(BaseLM):
             }
         }
 
-    def __init__(self, model_name, temp, max_tokens=512, api_token=None,
+    def __init__(self, model_name, temp=None, max_tokens=512, api_token=None,
                  suppress_httpx_log=True, **kwargs):
         super(Replicate, self).__init__(model_name)
         self.r_model_name = model_name
