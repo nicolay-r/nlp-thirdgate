@@ -11,15 +11,13 @@ The purpose is of this project is to share **Third-party providers** that could 
 # Third-Party Providers
 
 * ### [LLM](llm)
-  * **Mistral.AI** provider [[code]](llm/mistralai_150.py)
-  * **OpenRouter.AI** provider [[code]](llm/open_router.py)
-  * **Replicate.IO** provider [[code]](llm/replicate_104.py)
-    * DeepSeek-R1
-    * LLaMA-3 [8B] / [70B]  
+  * **Mistral.AI** [[provider]](llm/mistralai_150.py) [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/)
+  * **OpenRouter.AI** [[provider]](llm/open_router.py) [[🤖 models]](https://openrouter.ai/models)
+  * **Replicate.IO** [[provider]](llm/replicate_104.py) [[🤖 models]](https://replicate.com/pricing#language-models)
   * **OpenAI** provider:
     * [[ChatGPT]](llm/openai_156.py)
     * [[o1]](llm/openai_o1.py)
-  * **Transformers** provider:
+  * **Transformers**:
     * DeepSeek-R1-distill-7b [[📙 notebook]](tutorials/llm_deep_seek_7b_distill_colab.ipynb)
     * [[LLaMA-3]](llm/transformers_llama.py)
     * [[Qwen-2]](llm/transformers_qwen2.py)
@@ -29,9 +27,9 @@ The purpose is of this project is to share **Third-party providers** that could 
     * [[Flan-T5]](llm/transformers_flan_t5.py)
     * [[DeciLM]](llm/transformers_decilm.py)
 * ### [NER](ner)
-    * **DeepPavlov** provider [[code]](ner/dp_130.py)
+    * **DeepPavlov** [[provider]](ner/dp_130.py)
 * ### [Text-translation](text-translation)
-    * **GoogleTranslator** provider [[code]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
+    * **GoogleTranslator** [[provider]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
 
 # Data Iterators
