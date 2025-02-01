@@ -18,7 +18,8 @@ The purpose is of this project is to share **Third-party providers** that could 
     * [[ChatGPT]](llm/openai_156.py)
     * [[o1]](llm/openai_o1.py)
   * **Transformers**:
-    * DeepSeek-R1-distill-7b [[📙 notebook]](tutorials/llm_deep_seek_7b_distill_qwen2.ipynb)
+    * DeepSeek-R1-distill-7b [[📙 qwen-notebook]](tutorials/llm_deep_seek_7b_distill_qwen2.ipynb)
+      [[📙 llama3-notebook]](tutorials/llm_deep_seek_7b_distill_llama3.ipynb)
     * [[LLaMA-3]](llm/transformers_llama.py)
     * [[Qwen-2]](llm/transformers_qwen2.py)
     * [[Microsoft-Phi-2]](llm/transformers_microsoft_phi_2.py)
