@@ -22,8 +22,6 @@ class MicrosoftPhi2(BaseLM):
                 print("Warning: Ignore bf-16 option for calculations on CPU!")
             kwargs.update({"torch_dtype": torch.float32})
         else:
-            if use_bf16:
-                print("Warning: Experimental mode with bf-16!")
             kwargs.update({"torch_dtype": torch.bfloat16 if use_bf16 else "auto"})
 
         self.__device = device

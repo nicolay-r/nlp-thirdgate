@@ -11,9 +11,6 @@ class Llama32(BaseLM):
                  temp=0.1, device='auto', max_length=None, use_bf16=False, **kwargs):
         super(Llama32, self).__init__(name=model_name, **kwargs)
 
-        if use_bf16:
-            print("Warning: Experimental mode with bf-16!")
-
         self.__max_length = max_length
         self.__pipe = pipeline(
             "text-generation",

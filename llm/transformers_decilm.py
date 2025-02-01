@@ -23,9 +23,6 @@ class Decilm(BaseLM):
         """
         super(Decilm, self).__init__(name=model_name, **kwargs)
 
-        if use_bf16:
-            print("Warning: Experimental mode with bf-16!")
-
         torch_dtype = torch.bfloat16 if use_bf16 else torch.float32
 
         # Optional Quantization to 4 bit.

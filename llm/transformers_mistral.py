@@ -11,9 +11,6 @@ class Mistral(BaseLM):
         assert(isinstance(max_length, int) or max_length is None)
         super(Mistral, self).__init__(name=model_name, **kwargs)
 
-        if use_bf16:
-            print("Warning: Experimental mode with bf-16!")
-
         self.__device = device
         self.__max_length = 512 if max_length is None else max_length
         self.__check_params()
