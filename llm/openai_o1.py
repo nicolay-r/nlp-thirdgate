@@ -13,7 +13,7 @@ class OpenAIGPT(BaseLM):
             - if completion tokens won't be enough then the output might be EMPTY.
     """
 
-    def __init__(self, api_key, model_name="o1-preview-2024-09-12", assistant_prompt=None,
+    def __init__(self, api_token, model_name="o1-preview-2024-09-12", assistant_prompt=None,
                  max_completion_tokens=None, freq_penalty=0.0, attempts=None,
                  suppress_httpx_log=True, **kwargs):
         assert (isinstance(assistant_prompt, str) or assistant_prompt is None)
@@ -23,7 +23,7 @@ class OpenAIGPT(BaseLM):
             logger.info("if completion tokens won't be enough then the output might be EMPTY.")
 
         # dynamic import of the OpenAI library.
-        self.__client = OpenAI(api_key=api_key, base_url="https://api.openai.com/v1")
+        self.__client = OpenAI(api_key=api_token, base_url="https://api.openai.com/v1")
         self.__max_completion_tokens = max_completion_tokens
         self.__model_name = model_name
         self.__assistant_prompt = assistant_prompt if assistant_prompt is not None else None
