@@ -8,14 +8,14 @@ from bulk_chain.core.llm_base import BaseLM
 
 class OpenAIGPT(BaseLM):
 
-    def __init__(self, api_key, model_name, base_url="https://api.openai.com/v1", 
+    def __init__(self, api_token, model_name, base_url="https://api.openai.com/v1", 
                  temp=0.1, max_tokens=None, assistant_prompt=None,
                  freq_penalty=0.0, attempts=None, suppress_httpx_log=True, **kwargs):
         assert (isinstance(assistant_prompt, str) or assistant_prompt is None)
         super(OpenAIGPT, self).__init__(name=model_name, attempts=attempts, **kwargs)
 
         # dynamic import of the OpenAI library.
-        self.__client = OpenAI(api_key=api_key, base_url=base_url)
+        self.__client = OpenAI(api_key=api_token, base_url=base_url)
         self.__max_tokens = 256 if max_tokens is None else max_tokens
         self.__temperature = temp
         self.__model_name = model_name
