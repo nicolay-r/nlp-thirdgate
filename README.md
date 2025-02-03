@@ -15,9 +15,9 @@ The purpose is of this project is to share **Third-party providers** that could 
   * **OpenRouter.AI** [[provider]](llm/open_router.py) [[🤖 models]](https://openrouter.ai/models)
   * **Replicate.IO** [[provider]](llm/replicate_104.py) [[🤖 models]](https://replicate.com/pricing#language-models)
   * **OpenAI** provider:
-    * [[ChatGPT]](llm/openai_156.py)
+    * ChatGPT [[provider]](llm/openai_156.py)
     * Qwen-2.5-Max [[bash-script]](https://github.com/nicolay-r/nlp-thirdgate/blob/master/tutorials/llm_qwen_25_max_chat.sh)
-    * [[o1]](llm/openai_o1.py)
+    * o1 [[provider]](llm/openai_o1.py)
   * **Transformers**:
     * DeepSeek-R1-distill-7b [[📙 qwen-notebook]](tutorials/llm_deep_seek_7b_distill_qwen2.ipynb)
       [[📙 llama3-notebook]](tutorials/llm_deep_seek_7b_distill_llama3.ipynb)
