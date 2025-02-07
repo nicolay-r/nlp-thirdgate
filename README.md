@@ -29,7 +29,7 @@ The purpose is of this project is to share **Third-party providers** that could 
     * Flan-T5 [[provider]](llm/transformers_flan_t5.py)
     * DeciLM [[provider]](llm/transformers_decilm.py)
 * ### [NER](ner)
-    * **DeepPavlov** [[provider]](ner/dp_130.py)
+    * **DeepPavlov** [[provider]](ner/dp_130.py) [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
 * ### [Text-translation](text-translation)
     * **GoogleTranslator** [[provider]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
