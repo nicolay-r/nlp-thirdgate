@@ -30,6 +30,7 @@ The purpose is of this project is to share **Third-party providers** that could 
     * DeciLM [[provider]](llm/transformers_decilm.py)
 * ### [NER](ner)
     * **DeepPavlov** [[provider]](ner/dp_130.py) [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
+    * **Flair** [[provider]](ner/flair_0151.py) [[🤖 models]](https://huggingface.co/flair)
 * ### [Text-translation](text-translation)
     * **GoogleTranslator** [[provider]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
