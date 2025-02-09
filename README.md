@@ -31,6 +31,7 @@ The purpose is of this project is to share **Third-party providers** that could 
 * ### [NER](ner)
     * **DeepPavlov** [[provider]](ner/dp_130.py) [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
     * **Flair** [[provider]](ner/flair_0151.py) [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
+    * **Spacy** [[provider]](ner/spacy_383.py) [[bash-script]](tutorials/ner_spacy_383.sh) [[🤖 models]](https://huggingface.co/spacy)
 * ### [Text-translation](text-translation)
     * **GoogleTranslator** [[provider]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
