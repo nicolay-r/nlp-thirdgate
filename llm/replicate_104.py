@@ -53,7 +53,7 @@ class Replicate(BaseLM):
             }
         }
 
-    def __init__(self, model_name, temp=None, max_tokens=512, api_token=None,
+    def __init__(self, model_name, temp=None, max_tokens=512, api_token=None, stream=False,
                  suppress_httpx_log=True, **kwargs):
         super(Replicate, self).__init__(model_name)
         self.r_model_name = model_name
@@ -66,6 +66,7 @@ class Replicate(BaseLM):
         self.settings = all_settings[model_name]
         client = auto_import("replicate.Client", is_class=False)
         self.client = client(api_token=api_token)
+        self.__stream = stream
 
         if suppress_httpx_log:
             httpx_logger = logging.getLogger("httpx")
@@ -78,8 +79,9 @@ class Replicate(BaseLM):
         # Setup prompting message.
         input_dict["prompt"] = prompt
 
-        response = ""
-        for event in self.client.stream(self.r_model_name, input=input_dict):
-            response += str(event)
-
-        return response
+        chunks_it = self.client.stream(self.r_model_name, input=input_dict)
+        if self.__stream:
+            for chunk in chunks_it:
+                yield chunk
+        else:
+            return "".join([str(chunk) for chunk in chunks_it])
