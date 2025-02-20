@@ -80,8 +80,5 @@ class Replicate(BaseLM):
         input_dict["prompt"] = prompt
 
         chunks_it = self.client.stream(self.r_model_name, input=input_dict)
-        if self.__stream:
-            for chunk in chunks_it:
-                yield chunk
-        else:
-            return "".join([str(chunk) for chunk in chunks_it])
+        return chunks_it if self.__stream else "".join([str(chunk) for chunk in chunks_it])
+        
