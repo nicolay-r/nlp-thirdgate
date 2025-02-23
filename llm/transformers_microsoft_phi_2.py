@@ -11,7 +11,8 @@ class MicrosoftPhi2(BaseLM):
     """ https://huggingface.co/microsoft/phi-2
     """
 
-    def __init__(self, model_name="microsoft/phi-2", device='cuda', max_length=None, use_bf16=False, **kwargs):
+    def __init__(self, model_name="microsoft/phi-2", device='auto',
+                 max_length=None, use_bf16=False, **kwargs):
         super(MicrosoftPhi2, self).__init__(model_name, **kwargs)
 
         # Default parameters.

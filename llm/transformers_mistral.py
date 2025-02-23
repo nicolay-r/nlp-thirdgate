@@ -6,8 +6,8 @@ from bulk_chain.core.llm_base import BaseLM
 
 class Mistral(BaseLM):
 
-    def __init__(self, model_name="mistralai/Mistral-7B-Instruct-v0.1", temp=0.1, device='cuda', max_length=None,
-                 use_bf16=False, **kwargs):
+    def __init__(self, model_name="mistralai/Mistral-7B-Instruct-v0.1", temp=0.1,
+                 device='auto', max_length=None, use_bf16=False, **kwargs):
         assert(isinstance(max_length, int) or max_length is None)
         super(Mistral, self).__init__(name=model_name, **kwargs)
 
