@@ -27,7 +27,6 @@ The purpose is of this project is to share **Third-party providers** that could 
     * Mistral [[provider]](llm/transformers_mistral.py)
     * Gemma [[provider]](llm/transformers_gemma.py)
     * Flan-T5 [[provider]](llm/transformers_flan_t5.py)
-    * DeciLM [[provider]](llm/transformers_decilm.py)
 * ### [NER](ner)
     * **DeepPavlov** [[provider]](ner/dp_130.py) [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
     * **Flair** [[provider]](ner/flair_0151.py) [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
