@@ -7,7 +7,7 @@ from bulk_chain.core.llm_base import BaseLM
 
 class Llama32(BaseLM):
 
-    def __init__(self, model_name, api_token=None, temp=0.1, device='auto',
+    def __init__(self, model_name, api_token=None, temp=0.1, device='cpu',
                  max_length=32768, use_bf16=False, **kwargs):
         super(Llama32, self).__init__(name=model_name, **kwargs)
 

@@ -6,7 +6,7 @@ from bulk_chain.core.llm_base import BaseLM
 
 class Gemma(BaseLM):
 
-    def __init__(self, model_name="google/gemma-7b-it", temp=0.1, device='cuda',
+    def __init__(self, model_name="google/gemma-7b-it", temp=0.1, device='cpu',
                  max_length=None, api_token=None, use_bf16=False, **kwargs):
         super(Gemma, self).__init__(name=model_name, **kwargs)
         self.__device = device

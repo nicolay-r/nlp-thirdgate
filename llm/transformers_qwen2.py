@@ -5,7 +5,8 @@ from bulk_chain.core.llm_base import BaseLM
 
 class Qwen2(BaseLM):
 
-    def __init__(self, model_name, temp=0.1, device='cuda', max_length=None, token=None, use_bf16=False, **kwargs):
+    def __init__(self, model_name, temp=0.1, device='cpu',
+                 max_length=None, token=None, use_bf16=False, **kwargs):
         super(Qwen2, self).__init__(name=model_name, **kwargs)
 
         self.__device = device
