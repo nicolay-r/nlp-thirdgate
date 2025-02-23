@@ -15,7 +15,7 @@ class Decilm(BaseLM):
         ### Assistant:
         """
 
-    def __init__(self, model_name="Deci/DeciLM-7B-instruct", temp=0.1, max_length=None, device='cpu',
+    def __init__(self, model_name="Deci/DeciLM-7B-instruct", temp=0.1, max_length=None, device='cuda',
                  use_bf16=False, load_in_4bit=True, **kwargs):
         """ Embedded from the original page of the model initialization from huggingface.
             Source: https://huggingface.co/Deci/DeciLM-7B-instruct
