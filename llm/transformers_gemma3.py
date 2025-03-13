@@ -20,7 +20,7 @@ class Gemma3(BaseLM):
                  max_new_tokens=None, api_token=None, **kwargs):
         super(Gemma3, self).__init__(name=model_name, support_batching=True, **kwargs)
         self.__device = device
-        self.__model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype="auto", token=api_token)
+        self.__model = Gemma3ForCausalLM.from_pretrained(model_name, torch_dtype="auto", token=api_token)
         self.__max_new_tokens = max_new_tokens
         self.__model.to(device)
         self.__tokenizer = AutoTokenizer.from_pretrained(model_name, token=api_token)
