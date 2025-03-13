@@ -37,7 +37,7 @@ class Gemma3(BaseLM):
         ]
         
         inputs = self.__tokenizer.apply_chat_template(
-            messages, 
+            [messages], 
             add_generation_prompt=True,
             tokenize=True,
             return_dict=True,
