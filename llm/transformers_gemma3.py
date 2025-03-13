@@ -1,5 +1,5 @@
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import Gemma3ForCausalLM, AutoTokenizer
 
 from bulk_chain.core.llm_base import BaseLM
 
