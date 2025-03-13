@@ -27,17 +27,26 @@ class Gemma3(BaseLM):
         self.__temp = temp
 
     def ask(self, batch):
-        inputs = self.__tokenizer(
-            [
-                {
-                    {"role": "system", "content": [{"type": "text", "text": "You are a helpful assistant."}]},
-                    {"role": "user", "content": [{"type": "text", "text": p}]}
-                } 
-                for p in batch
-            ], 
+        
+        messages = [
+            {
+                {"role": "system", "content": [{"type": "text", "text": "You are a helpful assistant."}]},
+                {"role": "user", "content": [{"type": "text", "text": p}]}
+            } 
+            for p in batch
+        ]
+        
+        inputs = self.__tokenizer.apply_chat_template(
+            messages, 
+            add_generation_prompt=True,
+            tokenize=True,
+            return_dict=True,
             return_tensors="pt", 
             padding=True, 
             truncation=True)
         inputs.to(self.__device)
-        outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens, temperature=self.__temp, do_sample=True)
+        
+        with torch.inference_mode():
+            outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens, temperature=self.__temp, do_sample=True)
+            
         return self.__tokenizer.batch_decode(outputs, skip_special_tokens=True)
