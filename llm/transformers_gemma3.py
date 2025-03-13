@@ -16,12 +16,11 @@ class Gemma3(BaseLM):
       - Total input context of 128K tokens for the 4B, 12B, and 27B sizes, and 32K tokens for the 1B size
     """
 
-    def __init__(self, model_name="google/gemma-3-1b-it", temp=0.1, device='cpu',
-                 max_new_tokens=None, api_token=None, use_bf16=False, **kwargs):
-        super(Gemma, self).__init__(name=model_name, support_batching=True, **kwargs)
+    def __init__(self, model_name="google/gemma-3-1b-it", temp=0.1, device='cuda',
+                 max_new_tokens=None, api_token=None, **kwargs):
+        super(Gemma3, self).__init__(name=model_name, support_batching=True, **kwargs)
         self.__device = device
-        self.__model = AutoModelForCausalLM.from_pretrained(
-            model_name, torch_dtype=torch.bfloat16 if use_bf16 else "auto", token=api_token)
+        self.__model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype="auto", token=api_token)
         self.__max_new_tokens = max_new_tokens
         self.__model.to(device)
         self.__tokenizer = AutoTokenizer.from_pretrained(model_name, token=api_token)
