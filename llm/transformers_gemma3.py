@@ -17,7 +17,8 @@ class Gemma3(BaseLM):
     """
 
     def __init__(self, model_name="google/gemma-3-1b-it", temp=0.1, device='cuda', use_bf16=False,
-                 max_new_tokens=None, api_token=None, **kwargs):
+                 max_new_tokens=8192, api_token=None, **kwargs):
+        assert (isinstance(max_new_tokens, int) and max_new_tokens is not None)
         super(Gemma3, self).__init__(name=model_name, support_batching=True, **kwargs)
         self.__device = device
         self.__model = Gemma3ForCausalLM.from_pretrained(
@@ -26,6 +27,20 @@ class Gemma3(BaseLM):
         self.__model.to(device)
         self.__tokenizer = AutoTokenizer.from_pretrained(model_name, token=api_token)
         self.__temp = temp
+
+    @staticmethod
+    def __handle_response(response, prompt):
+
+        # We attempt to crop the mentioned prompt.
+        if prompt not in response:
+            return response
+        response = response[response.index(prompt)+len(prompt):]
+
+        # We attempt to keep only the first response turn from the model.
+        response_turns = response.split("\nmodel\n")
+        if len(response_turns) == 0:
+            return response
+        return response_turns[1]
 
     def ask(self, batch):
 
@@ -39,16 +54,17 @@ class Gemma3(BaseLM):
 
         inputs = self.__tokenizer.apply_chat_template(
             messages,
-            add_generation_prompt=False,
+            add_generation_prompt=True,
             tokenize=True,
             return_dict=True,
-            return_tensors="pt", 
-            padding=True, 
+            return_tensors="pt",
+            padding=True,
             truncation=True)
         inputs.to(self.__device)
         
         with torch.inference_mode():
             outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens,
                                             temperature=self.__temp, do_sample=True)
-            
-        return self.__tokenizer.batch_decode(outputs, skip_special_tokens=True)
+
+        return [self.__handle_response(response=r, prompt=batch[i])
+                for i, r in enumerate(self.__tokenizer.batch_decode(outputs, skip_special_tokens=True))]
