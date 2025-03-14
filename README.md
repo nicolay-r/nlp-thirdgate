@@ -10,36 +10,26 @@ The purpose is of this project is to share **Third-party providers** that could 
 
 # Third-Party Providers
 
-* ### [LLM](llm)
-  **Mistral.AI** [[provider]](llm/mistralai_150.py) [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/)
-  
-  **OpenRouter.AI** [[provider]](llm/open_router.py) [[🤖 models]](https://openrouter.ai/models)
-  
-  **Replicate.IO** [[provider]](llm/replicate_104.py) [[🤖 models]](https://replicate.com/pricing#language-models)
-  
-  **OpenAI** provider:
-    * ChatGPT [[provider]](llm/openai_156.py)
-    * Qwen-2.5-Max [[bash-script]](https://github.com/nicolay-r/nlp-thirdgate/blob/master/tutorials/llm_qwen_25_max_chat.sh)
-    * o1 [[provider]](llm/openai_o1.py)
-    
-  **Transformers**:
+* **LLM / [Mistral.AI](llm/mistralai_150.py)** [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/)
+* **LLM / [OpenRouter.AI](llm/open_router.py)** [[🤖 models]](https://openrouter.ai/models)
+* **LLM / [Replicate.IO](llm/replicate_104.py)** [[🤖 models]](https://replicate.com/pricing#language-models)
+* **LLM / OpenAI**:
+    * [ChatGPT](llm/openai_156.py)
+    * [Qwen-2.5-Max](https://github.com/nicolay-r/nlp-thirdgate/blob/master/tutorials/llm_qwen_25_max_chat.sh)
+    * [o1](llm/openai_o1.py)
+* **LLM / Transformers**:
     * DeepSeek-R1-distill-7b [[📙 qwen-notebook]](tutorials/llm_deep_seek_7b_distill_qwen2.ipynb)
       [[📙 llama3-notebook]](tutorials/llm_deep_seek_7b_distill_llama3.ipynb)
-    * LLaMA-3 [[provider]](llm/transformers_llama.py)
-    * Qwen-2 [[provider]](llm/transformers_qwen2.py)
-    * Microsoft-Phi-2 [[provider]](llm/transformers_microsoft_phi_2.py)
-    * Gemma-3 [[provider]](llm/transformers_gemma3.py) [[📙 notebook]](tutorials/llm_gemma_3.ipynb)
-    * Flan-T5 [[provider]](llm/transformers_flan_t5.py)
-    * Mistral [[provider]](llm/transformers_mistral.py)
-* ### [NER](ner)
-  **DeepPavlov** [[provider]](ner/dp_130.py) [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
-  
-  **Flair** [[provider]](ner/flair_0151.py) [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
-  
-  **Spacy** [[provider]](ner/spacy_383.py) [[bash-script]](tutorials/ner_spacy_383.sh) [[🤖 models]](https://huggingface.co/spacy)
-
-* ### [Text-translation](text-translation)
-  **GoogleTranslator** [[provider]](text-translation/googletrans_310a.py) [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
+    * [LLaMA-3](llm/transformers_llama.py)
+    * [Qwen-2](llm/transformers_qwen2.py)
+    * [Microsoft-Phi-2](llm/transformers_microsoft_phi_2.py)
+    * [Gemma-3](llm/transformers_gemma3.py) [[📙 notebook]](tutorials/llm_gemma_3.ipynb)
+    * [Flan-T5](llm/transformers_flan_t5.py)
+    * [Mistral](llm/transformers_mistral.py)
+* **NER / [DeepPavlov](ner/dp_130.py)** [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
+* **NER / [Flair](ner/flair_0151.py)** [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
+* **NER / [Spacy](ner/spacy_383.py)** [[bash-script]](tutorials/ner_spacy_383.sh) [[🤖 models]](https://huggingface.co/spacy)
+* **Translation / [GoogleTranslator](text-translation/googletrans_310a.py)** [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
 
 
 # Data Iterators
