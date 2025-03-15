@@ -25,7 +25,7 @@ The purpose is of this project is to share **Third-party providers** that could 
       [[📙 llama3-notebook]](tutorials/llm_deep_seek_7b_distill_llama3.ipynb)
     * [LLaMA-3](llm/transformers_llama.py)
     * [Qwen-2](llm/transformers_qwen2.py)
-    * [Microsoft-Phi-2](llm/transformers_microsoft_phi_2.py)
+    * [Phi-4](llm/transformers_phi4.py)
     * [Gemma-3](llm/transformers_gemma3.py) [[📙 notebook]](tutorials/llm_gemma_3.ipynb)
     * [Flan-T5](llm/transformers_flan_t5.py)
     * [Mistral](llm/transformers_mistral.py)
