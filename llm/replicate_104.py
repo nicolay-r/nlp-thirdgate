@@ -18,16 +18,7 @@ class Replicate(BaseLM):
                 "temperature": 0.6 if temp is None else temp,        # According to the DeepSeek documentation.
                 "max_tokens": min(max_tokens, 20480),
                 "prompt_template": "",                               # According to the DeepSeek documentation.
-            },
-            "meta/meta-llama-3-8b-instruct": {
-                "top_k": top_k,
-                "top_p": 0.9,
-                "length_penalty": 1,
-                "presence_penalty": 1.15,
-                "temperature": 0.1 if temp is None else temp,
-                "max_tokens": max_tokens,
-                "prompt_template": Replicate.LLaMA3_instruct_prompt_template,
-            },
+            },           
             "meta/meta-llama-3-70b-instruct": {
                 "top_k": top_k,
                 "min_tokens": 0,
@@ -36,21 +27,16 @@ class Replicate(BaseLM):
                 "temperature": 0.1 if temp is None else temp,
                 "max_tokens": max_tokens,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template
-            },
-            "meta/llama-2-70b-chat": {
-                "top_k": top_k,
-                "temperature": 0.1 if temp is None else temp,
-                "max_new_tokens": max_tokens,
-                "min_new_tokens": -1,
-                "prompt_template": Replicate.LLaMA3_instruct_prompt_template
-            },
-            "meta/meta-llama-3.1-405b-instruct": {
-                "top_k": top_k,
-                "temperature": 0.1 if temp is None else temp,
-                "max_new_tokens": max_tokens,
-                "min_new_tokens": -1,
-                "prompt_template": Replicate.LLaMA3_instruct_prompt_template
             }
+             "meta/meta-llama-3-8b-instruct": {
+                "top_k": top_k,
+                "top_p": 0.9,
+                "length_penalty": 1,
+                "presence_penalty": 1.15,
+                "temperature": 0.1 if temp is None else temp,
+                "max_tokens": max_tokens,
+                "prompt_template": Replicate.LLaMA3_instruct_prompt_template,
+            },
         }
 
     def __init__(self, model_name, temp=None, max_tokens=512, api_token=None, stream=False,
