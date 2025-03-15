@@ -1,4 +1,5 @@
-# nlp-thirdgate
+# nlp-thirdgate [![twitter](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://x.com/nicolayr_/status/1900911458197623268)
+[![twitter](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://x.com/nicolayr_/status/1900911458197623268)
 
 <p align="center">
     <img src="logo.png"/>
