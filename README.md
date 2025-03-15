@@ -13,6 +13,9 @@ The purpose is of this project is to share **Third-party providers** that could 
 * **LLM / [Mistral.AI](llm/mistralai_150.py)** [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/)
 * **LLM / [OpenRouter.AI](llm/open_router.py)** [[🤖 models]](https://openrouter.ai/models)
 * **LLM / [Replicate.IO](llm/replicate_104.py)** [[🤖 models]](https://replicate.com/pricing#language-models)
+    * DeepSeek-R1
+    * LLaMA-3-70B-Instruct
+    * LLaMA-3-8B-Instruct
 * **LLM / OpenAI**:
     * [ChatGPT](llm/openai_156.py)
     * [Qwen-2.5-Max](https://github.com/nicolay-r/nlp-thirdgate/blob/master/tutorials/llm_qwen_25_max_chat.sh)
