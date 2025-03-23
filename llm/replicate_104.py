@@ -27,7 +27,7 @@ class Replicate(BaseLM):
                 "temperature": 0.1 if temp is None else temp,
                 "max_tokens": max_tokens,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template
-            }
+            },
              "meta/meta-llama-3-8b-instruct": {
                 "top_k": top_k,
                 "top_p": 0.9,
