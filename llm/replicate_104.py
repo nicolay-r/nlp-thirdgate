@@ -18,7 +18,7 @@ class Replicate(BaseLM):
                 "frequency_penalty": 0,                              # Default parameter at replicate.com demo
                 "presence_penalty": 0,                               # Default parameter at replicate.com demo
                 "temperature": 0.6 if temp is None else temp,        # According to the DeepSeek documentation.
-                "max_tokens": min(max_tokens, 20480),
+                "max_tokens": min(max_tokens, 20480) if max_tokens is not None else 20480,
                 "prompt_template": "",                               # According to the DeepSeek documentation.
             },
             "meta/meta-llama-3-70b-instruct": {
@@ -27,7 +27,7 @@ class Replicate(BaseLM):
                 "presence_penalty": 1.15,
                 "frequency_penalty": 0.2,
                 "temperature": 0.1 if temp is None else temp,
-                "max_tokens": max_tokens,
+                "max_tokens": min(max_tokens, 4096) if max_tokens is not None else 4096,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template.format(template=template)
             },
             "meta/meta-llama-3-8b-instruct": {
@@ -36,12 +36,12 @@ class Replicate(BaseLM):
                 "length_penalty": 1,
                 "presence_penalty": 1.15,
                 "temperature": 0.1 if temp is None else temp,
-                "max_tokens": max_tokens,
+                "max_tokens": min(max_tokens, 4096) if max_tokens is not None else 4096,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template.format(template=template),
             },
         }
 
-    def __init__(self, model_name, temp=None, max_tokens=512, api_token=None, stream=False,
+    def __init__(self, model_name, temp=None, max_tokens=None, api_token=None, stream=False,
                  suppress_httpx_log=True, assistant="You are a helpful assistant", **kwargs):
         super(Replicate, self).__init__(model_name)
         self.r_model_name = model_name
