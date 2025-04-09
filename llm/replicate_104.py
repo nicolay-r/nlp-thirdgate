@@ -39,6 +39,16 @@ class Replicate(BaseLM):
                 "max_tokens": min(max_tokens, 4096) if max_tokens is not None else 4096,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template.format(template=template),
             },
+            "meta/llama-4-maverick-instruct": {
+                "top_k": top_k,
+                "top_p": 1.0,
+                "length_penalty": 1,
+                "presence_penalty": 0,
+                "frequency_penalty": 0,
+                "temperature": 0.1 if temp is None else temp,
+                "max_tokens": min(max_tokens, 128000) if max_tokens is not None else 128000,
+                "prompt_template": template,
+            }            
         }
 
     def __init__(self, model_name, temp=None, max_tokens=None, api_token=None, stream=False,
