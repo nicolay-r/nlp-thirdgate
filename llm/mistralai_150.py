@@ -1,3 +1,5 @@
+import logging
+
 from bulk_chain.core.llm_base import BaseLM
 
 from mistralai import Mistral
