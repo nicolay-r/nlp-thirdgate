@@ -1,7 +1,7 @@
 import logging
 
 from bulk_chain.core.llm_base import BaseLM
-from bulk_chain.core.utils import auto_import
+from replicate import Client
 
 
 class Replicate(BaseLM):
@@ -62,8 +62,7 @@ class Replicate(BaseLM):
             raise Exception(f"There is no predefined settings for `{model_name}`. Please, Tweak the model first!")
 
         self.settings = all_settings[model_name]
-        client = auto_import("replicate.Client", is_class=False)
-        self.client = client(api_token=api_token)
+        self.client = Client(api_token=api_token)
         self.__stream = stream
 
         if suppress_httpx_log:
