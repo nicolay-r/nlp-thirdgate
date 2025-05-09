@@ -51,7 +51,7 @@ class Replicate(BaseLM):
             }, 
         }
 
-    def __init__(self, model_name, temp=None, max_tokens=None, api_token=None, stream=False,
+    def __init__(self, model_name, temp=None, max_tokens=None, api_token=None,
                  suppress_httpx_log=True, assistant="You are a helpful assistant", **kwargs):
         super(Replicate, self).__init__(name=model_name, **kwargs)
         self.r_model_name = model_name
@@ -63,18 +63,23 @@ class Replicate(BaseLM):
 
         self.settings = all_settings[model_name]
         self.client = Client(api_token=api_token)
-        self.__stream = stream
 
         if suppress_httpx_log:
             httpx_logger = logging.getLogger("httpx")
             httpx_logger.setLevel(logging.WARNING)
 
     def ask(self, prompt):
+        chunks = self.client.run(self.r_model_name, input=self.settings | {"prompt": prompt})
+        return "".join(chunks)
 
-        input_dict = dict(self.settings)
+    def ask_stream(self, prompt):
+        chunks_it = self.client.stream(self.r_model_name, input=self.settings | {"prompt": prompt})
+        return chunks_it
 
-        # Setup prompting message.
-        input_dict["prompt"] = prompt
+    async def ask_async(self, prompt):
+        chunks = self.client.async_run(self.r_model_name, input=self.settings | {"prompt": prompt})
+        return ''.join([str(chunk) for chunk in await chunks])
 
-        chunks_it = self.client.stream(self.r_model_name, input=input_dict)
-        return chunks_it if self.__stream else "".join([str(chunk) for chunk in chunks_it])
+    async def ask_stream_async(self, prompt):
+        chunks_it = self.client.async_stream(self.r_model_name, input=self.settings | {"prompt": prompt})
+        return await chunks_it
