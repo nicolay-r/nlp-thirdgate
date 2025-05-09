@@ -53,7 +53,7 @@ class Replicate(BaseLM):
 
     def __init__(self, model_name, temp=None, max_tokens=None, api_token=None, stream=False,
                  suppress_httpx_log=True, assistant="You are a helpful assistant", **kwargs):
-        super(Replicate, self).__init__(name=model_name)
+        super(Replicate, self).__init__(name=model_name, **kwargs)
         self.r_model_name = model_name
 
         all_settings = self.get_template(max_tokens=max_tokens, temp=temp, template=assistant)
