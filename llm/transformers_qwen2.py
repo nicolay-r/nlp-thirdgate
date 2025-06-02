@@ -1,5 +1,5 @@
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from bulk_chain.core.llm_base import BaseLM
 
 
@@ -9,23 +9,31 @@ class Qwen2(BaseLM):
                  max_new_tokens=None, token=None, use_bf16=False, **kwargs):
         super(Qwen2, self).__init__(name=model_name, **kwargs)
 
-        self.__device = device
         self.__max_new_tokens = max_new_tokens
-        self.__model = AutoModelForCausalLM.from_pretrained(
+        model = AutoModelForCausalLM.from_pretrained(
             model_name, torch_dtype=torch.bfloat16 if use_bf16 else "auto", token=token)
-        self.__model.to(device)
-        self.__tokenizer = AutoTokenizer.from_pretrained(
-            model_name, torch_dtype=torch.bfloat16 if use_bf16 else "auto", token=token)
+        model.to(device)
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_name, torch_dtype=torch.bfloat16 if use_bf16 else "auto", token=token, padding_side="left")
+
         self.__temp = temp
 
-    def ask(self, prompt):
-        messages = [{"role": "user", "content": prompt}]
-        text = self.__tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-        inputs = self.__tokenizer([text], return_tensors="pt")
-        inputs.to(self.__device)
-        outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens,
-                                        temperature=self.__temp, do_sample=True)
-        generated_ids = [
-            output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, outputs)
-        ]
-        return self.__tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        self.__pipe = pipeline(
+            "text-generation",
+            model=model,
+            tokenizer=tokenizer,
+        )
+
+    def ask(self, batch):
+
+        messages = [[{"role": "user", "content": prompt}] for prompt in batch]
+
+        generation_args = {
+            "max_new_tokens": self.__max_new_tokens,
+            "return_full_text": False,
+            "temperature": self.__temp,
+            "do_sample": True,
+        }
+
+        output = self.__pipe(messages, **generation_args)
+        return [response[0]["generated_text"] for response in output]
