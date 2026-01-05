@@ -49,6 +49,11 @@ class Replicate(BaseLM):
                 "max_tokens": min(max_tokens, 4096) if max_tokens is not None else 4096,
                 "prompt_template": Replicate.LLaMA3_instruct_prompt_template.format(template=template),
             }, 
+            "openai/gpt-5": {
+                "reasoning_effort": "minimal",
+                "verbosity": "low",
+                "max_completion_tokens": min(max_tokens, 4096) if max_tokens is not None else 4096
+            },
         }
 
     def __init__(self, model_name, temp=None, max_tokens=None, api_token=None,
