@@ -11,10 +11,9 @@ The purpose is of this project is to share **Third-party providers** that could 
 
 # Third-Party Providers
 
-* **LLM / [Mistral.AI](llm/mistralai_150.py)** [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/)
-* **LLM / [OpenRouter.AI](llm/open_router.py)** [[🤖 models]](https://openrouter.ai/models)
+* **LLM / [OpenAI](llm/openai_156.py)**
 * **LLM / [Replicate.IO](llm/replicate_104.py)** [[🤖 models]](https://replicate.com/pricing#language-models)
-* **LLM / [OpenAI / ChagGPT](llm/openai_156.py)**
+* **LLM / [Mistral.AI](llm/mistralai_150.py)** [[🤖 models]](https://docs.mistral.ai/getting-started/models/models_overview/) 
 * **NER / [DeepPavlov](ner/dp_130.py)** [[📙 notebook]](tutorials/ner_deeppavlov_130.ipynb)
 * **NER / [Flair](ner/flair_0151.py)** [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
 * **NER / [Spacy](ner/spacy_383.py)** [[bash-script]](tutorials/ner_spacy_383.sh) [[🤖 models]](https://huggingface.co/spacy)
