@@ -5,7 +5,9 @@ from bulk_chain.core.llm_base import BaseLM
 
 
 class Mistral(BaseLM):
-    """ transformers==4.44.2
+    """ Tested under:
+            transformers==4.44.2
+            bulk-chain==1.2.1
     """
 
     def __init__(self, model_name="mistralai/Mistral-7B-Instruct-v0.1", temp=0.1,
@@ -27,7 +29,7 @@ class Mistral(BaseLM):
         parts = response.split("[/INST]")
         return "".join(parts[1:]) if len(parts) > 1 else ""
 
-    def ask(self, batch):
+    def ask_batch(self, batch):
 
         batch = [f"Instruct: {text}\nOutput:" for text in batch]
 

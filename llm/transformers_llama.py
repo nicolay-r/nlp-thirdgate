@@ -4,7 +4,15 @@ from bulk_chain.core.llm_base import BaseLM
 
 
 class Llama32(BaseLM):
-    """ This code has been tested under transformers==4.47.0
+    """
+        This code has been tested under transformers==4.47.0
+
+        This is an experimental version of the LLaMA-3.2
+        that has support of the batching mode.
+
+        Tested under:
+            transformers==4.44.2
+            bulk-chain==1.2.1
     """
 
     def __init__(self, model_name, api_token=None, temp=0.1, device='cpu',
@@ -21,8 +29,16 @@ class Llama32(BaseLM):
                                token=api_token)
 
     def ask(self, prompt):
-        outputs = self.__pipe(
-            [{"role": "user", "content": prompt}],
-            max_new_tokens=self.__max_new_tokens,
-        )
+        input = [
+            {"role": "user", "content": prompt}
+        ]
+        outputs = self.__pipe(input, max_new_tokens=self.__max_new_tokens)
         return outputs[0]["generated_text"][-1]["content"]
+
+    def ask_batch(self, batch):
+        input = [
+            {"role": "user", "content": prompt}
+            for prompt in batch
+        ]
+        outputs = self.__pipe(input, max_new_tokens=self.__max_new_tokens, batch_size=len(input))
+        return [out["generated_text"][-1]["content"] for out in outputs]

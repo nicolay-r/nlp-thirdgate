@@ -4,8 +4,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 
 class Phi4(BaseLM):
-    """
-    This is an implementation for: Phi-4-mini-instruct
+    """ This is an implementation for: Phi-4-mini-instruct
+        Tested under:
+            transformers==4.44.2
+            bulk-chain==1.2.1
     """
 
     def __init__(self, model_name="microsoft/Phi-4-mini-instruct", temp=0.1,
@@ -26,13 +28,9 @@ class Phi4(BaseLM):
 
         tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        self.__pipe = pipeline(
-            "text-generation",
-            model=model,
-            tokenizer=tokenizer,
-        )
+        self.__pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
-    def ask(self, batch):
+    def ask_batch(self, batch):
         messages = [
             [
                 {"role": "system", "content": "You are a helpful AI assistant."},

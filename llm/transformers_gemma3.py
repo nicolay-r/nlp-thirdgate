@@ -42,7 +42,7 @@ class Gemma3(BaseLM):
             return response
         return response_turns[1]
 
-    def ask(self, batch):
+    def ask_batch(self, batch):
 
         messages = [
             [

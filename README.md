@@ -25,7 +25,6 @@ The purpose is of this project is to share **Third-party providers** that could 
 ### Individual Models / Others / Miscelanneous
 </summary>
 
-* LLM / OpenAI / [o1](llm/openai_o1.py)
 * LLM / OpenAI / [Qwen-2.5-Max](https://github.com/nicolay-r/nlp-thirdgate/blob/master/tutorials/llm_qwen_25_max_chat.sh)
 * LLM / OpenAI / DeepSeek-R1-distill-7b [[📙 qwen-notebook]](tutorials/llm_deep_seek_7b_distill_qwen2.ipynb) [[📙 llama3-notebook]](tutorials/llm_deep_seek_7b_distill_llama3.ipynb)
 * LLM / Transformers / [LLaMA-3](llm/transformers_llama.py)

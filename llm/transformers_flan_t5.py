@@ -23,7 +23,7 @@ class FlanT5(BaseLM):
         self.__temp = temp
         self.__max_new_tokens = max_new_tokens
 
-    def ask(self, batch):
+    def ask_batch(self, batch):
         inputs = self.__tokenizer(batch, return_tensors="pt", padding=True, truncation=True)
         inputs.to(self.__device)
         outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens,

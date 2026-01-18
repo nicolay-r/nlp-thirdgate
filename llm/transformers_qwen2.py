@@ -4,6 +4,10 @@ from bulk_chain.core.llm_base import BaseLM
 
 
 class Qwen2(BaseLM):
+    """ Tested under:
+            transformers==4.44.2
+            bulk-chain==1.2.1
+    """
 
     def __init__(self, model_name, temp=0.1, device='cpu',
                  max_new_tokens=None, token=None, use_bf16=False, **kwargs):
@@ -18,13 +22,9 @@ class Qwen2(BaseLM):
 
         self.__temp = temp
 
-        self.__pipe = pipeline(
-            "text-generation",
-            model=model,
-            tokenizer=tokenizer,
-        )
+        self.__pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
-    def ask(self, batch):
+    def ask_batch(self, batch):
 
         messages = [[{"role": "user", "content": prompt}] for prompt in batch]
 
