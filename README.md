@@ -18,6 +18,8 @@ The purpose is of this project is to share **Third-party providers** that could 
 * **NER / [Flair](ner/flair_0151.py)** [[bash-script]](tutorials/ner_flair_0151.sh) [[🤖 models]](https://huggingface.co/flair)
 * **NER / [Spacy](ner/spacy_383.py)** [[bash-script]](tutorials/ner_spacy_383.sh) [[🤖 models]](https://huggingface.co/spacy)
 * **Translation / [GoogleTranslator](text-translation/googletrans_310a.py)** [[📙 notebook]](tutorials/translate_texts_with_spans_via_googletrans.ipynb)
+  * [[3.10.a]](https://github.com/nicolay-r/nlp-thirdgate/blob/master/text-translation/googletrans_310a.py)
+  * [[4.0.2]](https://github.com/nicolay-r/nlp-thirdgate/blob/master/text-translation/googletrans_402.py)
 
 <details>
 <summary>
