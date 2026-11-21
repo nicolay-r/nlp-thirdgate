@@ -1,3 +1,5 @@
+# This provider is for bulk-chain 1.3.1
+import asyncio
 import logging
 
 from bulk_chain.core.llm_base import BaseLM
@@ -58,7 +60,7 @@ class Replicate(BaseLM):
 
     def __init__(self, model_name, temp=None, max_tokens=None, api_token=None,
                  suppress_httpx_log=True, assistant="You are a helpful assistant", **kwargs):
-        super(Replicate, self).__init__(name=model_name, **kwargs)
+        super(Replicate, self).__init__(**kwargs)
         self.r_model_name = model_name
 
         all_settings = self.get_template(max_tokens=max_tokens, temp=temp, template=assistant)
@@ -73,18 +75,31 @@ class Replicate(BaseLM):
             httpx_logger = logging.getLogger("httpx")
             httpx_logger.setLevel(logging.WARNING)
 
-    def ask(self, prompt):
-        chunks = self.client.run(self.r_model_name, input=self.settings | {"prompt": prompt})
+    def _input(self, prompt, **kwargs):
+        payload = dict(self.settings)
+        payload["prompt"] = prompt
+        payload.update(kwargs)
+        return payload
+
+    def ask(self, prompt, **kwargs):
+        chunks = self.client.run(self.r_model_name, input=self._input(prompt, **kwargs))
         return "".join(chunks)
 
-    def ask_stream(self, prompt):
-        chunks_it = self.client.stream(self.r_model_name, input=self.settings | {"prompt": prompt})
+    def ask_batch(self, batch):
+        return [self.ask(prompt) for prompt in batch]
+
+    def ask_stream(self, prompt, **kwargs):
+        chunks_it = self.client.stream(self.r_model_name, input=self._input(prompt, **kwargs))
         return chunks_it
 
-    async def ask_async(self, prompt):
-        chunks = self.client.async_run(self.r_model_name, input=self.settings | {"prompt": prompt})
+    async def ask_async(self, prompt, **kwargs):
+        chunks = self.client.async_run(self.r_model_name, input=self._input(prompt, **kwargs))
         return ''.join([str(chunk) for chunk in await chunks])
 
-    async def ask_stream_async(self, prompt):
-        chunks_it = self.client.async_stream(self.r_model_name, input=self.settings | {"prompt": prompt})
+    async def ask_stream_async(self, prompt, **kwargs):
+        chunks_it = self.client.async_stream(self.r_model_name, input=self._input(prompt, **kwargs))
         return await chunks_it
+
+    async def ask_batch_async(self, batch):
+        prompts = list(batch)
+        return list(await asyncio.gather(*(self.ask_async(prompt) for prompt in prompts)))

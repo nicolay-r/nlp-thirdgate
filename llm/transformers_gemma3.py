@@ -1,3 +1,4 @@
+# This provider is for bulk-chain 1.3.1
 import torch
 from transformers import Gemma3ForCausalLM, AutoTokenizer
 
@@ -19,7 +20,7 @@ class Gemma3(BaseLM):
     def __init__(self, model_name="google/gemma-3-1b-it", temp=0.1, device='cuda', use_bf16=False,
                  max_new_tokens=8192, api_token=None, **kwargs):
         assert (isinstance(max_new_tokens, int) and max_new_tokens is not None)
-        super(Gemma3, self).__init__(name=model_name, support_batching=True, **kwargs)
+        super(Gemma3, self).__init__(**kwargs)
         self.__device = device
         self.__model = Gemma3ForCausalLM.from_pretrained(
             model_name, torch_dtype=torch.bfloat16 if use_bf16 else "auto", token=api_token)
@@ -42,14 +43,18 @@ class Gemma3(BaseLM):
             return response
         return response_turns[1]
 
+    def ask(self, prompt, **kwargs):
+        return self.ask_batch([prompt])[0]
+
     def ask_batch(self, batch):
 
+        prompts = list(batch)
         messages = [
             [
                 {"role": "system", "content": [{"type": "text", "text": "You are a helpful assistant."}]},
                 {"role": "user", "content": [{"type": "text", "text": prompt}]}
             ]
-            for prompt in batch
+            for prompt in prompts
         ]
 
         inputs = self.__tokenizer.apply_chat_template(
@@ -66,5 +71,17 @@ class Gemma3(BaseLM):
             outputs = self.__model.generate(**inputs, max_new_tokens=self.__max_new_tokens,
                                             temperature=self.__temp, do_sample=True)
 
-        return [self.__handle_response(response=r, prompt=batch[i])
+        return [self.__handle_response(response=r, prompt=prompts[i])
                 for i, r in enumerate(self.__tokenizer.batch_decode(outputs, skip_special_tokens=True))]
+
+    def ask_stream(self, prompt, **kwargs):
+        yield self.ask(prompt, **kwargs)
+
+    async def ask_async(self, prompt, **kwargs):
+        return self.ask(prompt, **kwargs)
+
+    async def ask_stream_async(self, prompt, **kwargs):
+        return self.ask(prompt, **kwargs)
+
+    async def ask_batch_async(self, batch):
+        return self.ask_batch(batch)

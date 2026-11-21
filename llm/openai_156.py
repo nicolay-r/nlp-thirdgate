@@ -1,4 +1,6 @@
+# This provider is for bulk-chain 1.3.1
 # This code has been tested under openai==1.56.0
+import asyncio
 import logging
 from openai import OpenAI, AsyncOpenAI
 from bulk_chain.core.llm_base import BaseLM
@@ -10,7 +12,7 @@ class OpenAIProvider(BaseLM):
                  temp=0.1, max_tokens=None, assistant_prompt=None,
                  attempts=None, suppress_httpx_log=True, **kwargs):
         assert (isinstance(assistant_prompt, str) or assistant_prompt is None)
-        super(OpenAIProvider, self).__init__(name=model_name, attempts=attempts, **kwargs)
+        super(OpenAIProvider, self).__init__(**kwargs)
 
         # dynamic import of the OpenAI library.
         self.__client = OpenAI(api_key=api_token, base_url=base_url)
@@ -40,28 +42,48 @@ class OpenAIProvider(BaseLM):
             "content": prompt
         }
 
-    def ask(self, prompt):
+    def ask(self, prompt, **kwargs):
         response = self.__client.chat.completions.create(
             model=self.__model_name,
             messages=list(self.__msg_content(prompt)),
             **self.__kwargs)
         return response.choices[0].message.content
 
-    def ask_stream(self, prompt):
+    def ask_batch(self, batch):
+        return [self.ask(prompt) for prompt in batch]
+
+    def ask_stream(self, prompt, **kwargs):
         stream = self.__client.chat.completions.create(
             model=self.__model_name,
             messages=list(self.__msg_content(prompt)),
             stream=True,
             **self.__kwargs)
 
-        # TODO. needs to be improved. 
         for chunk in stream:
-            if len(chunk.choices) > 0:
+            if len(chunk.choices) > 0 and chunk.choices[0].delta.content:
                 yield chunk.choices[0].delta.content
 
-    async def ask_async(self, prompt):
+    async def ask_async(self, prompt, **kwargs):
         response = await self.__client_async.chat.completions.create(
             model=self.__model_name,
             messages=list(self.__msg_content(prompt)),
             **self.__kwargs)
         return response.choices[0].message.content
+
+    async def ask_stream_async(self, prompt, **kwargs):
+        stream = await self.__client_async.chat.completions.create(
+            model=self.__model_name,
+            messages=list(self.__msg_content(prompt)),
+            stream=True,
+            **self.__kwargs)
+
+        async def _chunks():
+            async for chunk in stream:
+                if len(chunk.choices) > 0 and chunk.choices[0].delta.content:
+                    yield chunk.choices[0].delta.content
+
+        return _chunks()
+
+    async def ask_batch_async(self, batch):
+        prompts = list(batch)
+        return list(await asyncio.gather(*(self.ask_async(prompt) for prompt in prompts)))
